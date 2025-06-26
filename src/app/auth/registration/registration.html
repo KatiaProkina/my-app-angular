@@ -1,0 +1,43 @@
+<div class="modal-backdrop" (click)="close.emit()"></div>
+
+<form
+  class="modal"
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+  (click)="$event.stopPropagation()"
+>
+  <h2>Регистрация</h2>
+  <p>
+    Пожалуйста заполните короткую анкету и получите скидку 30% на первый заказ
+  </p>
+  <label>
+    Имя
+    <input formControlName="name" />
+  </label>
+  @if (form.controls['name'].touched && form.controls['name'].errors) {
+  <small class="error"> Поле обязательно </small>
+  }
+
+  <label>
+    Фамилия
+    <input formControlName="surname" />
+  </label>
+  @if (form.controls['surname'].touched && form.controls['surname'].errors) {
+  <small class="error"> Поле обязательно </small>
+  }
+
+  <label>
+    Email
+    <input formControlName="email" />
+  </label>
+  @if (form.controls['email'].touched && form.controls['email'].errors) {
+  <small class="error">
+    @if (form.controls['email'].errors['required']) { Поле обязательно } @if
+    (form.controls['email'].errors['email']) { Неверный формат email }
+  </small>
+  }
+
+  <div class="actions">
+    <button type="submit" [disabled]="form.invalid">Зарегистрироваться</button>
+  </div>
+</form>

@@ -1,0 +1,22 @@
+<div class="book-card" (click)="openDetail()">
+  <div class="image-wrapper">
+    <img [src]="imageUrl" [alt]="title" />
+  </div>
+
+  <div class="price">
+    @if(oldPrice){
+    <span class="old-price">{{ oldPrice }} ₽</span>
+    }
+
+    <div class="current">
+      <span class="current-price">{{ price }} ₽</span>
+
+      @if(discount){
+      <span class="discount-badge">{{ discount }}%</span>
+      }
+    </div>
+  </div>
+
+  <div class="title">{{ title }}</div>
+  <div class="author">{{ author }}</div>
+</div>

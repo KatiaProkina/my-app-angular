@@ -1,0 +1,19 @@
+<h2>Книги</h2>
+
+@if (books$ |async; as books) {
+<div class="book-list">
+  @for (book of books; track book.title) {
+  <app-book-card
+    [id]="book.id"
+    [title]="book.title"
+    [author]="book.author"
+    [price]="book.price"
+    [oldPrice]="book.oldPrice"
+    [discount]="book.discount"
+    [imageUrl]="book.imageUrl"
+  />
+  }
+</div>
+} @else {
+<p>Ничего не найдено</p>
+}

@@ -1,0 +1,44 @@
+@if (book$ | async; as book) {
+<nav class="breadcrumbs">
+  <a routerLink="/books" (click)="goBack()">Книги</a> / {{ book?.title }}
+</nav>
+
+<div class="book-detail">
+  <div class="left-column">
+    <img [src]="book?.imageUrl" [alt]="book?.title" class="book-cover" />
+  </div>
+
+  <div class="right-column">
+    <h1>{{ book?.title }}</h1>
+    <p class="author">{{ book?.author }}</p>
+
+    <div class="badges">
+      @if (book?.discount) {
+      <span class="badge discount">–{{ book.discount }}%</span>
+      }
+    </div>
+
+    <p class="price">
+      <span class="current">{{ book?.price }} ₽</span>
+      @if (book?.oldPrice) {
+      <span class="old">{{ book.oldPrice }} ₽</span>
+      }
+    </p>
+
+    <div class="description">
+      <p>{{ book?.description }}</p>
+    </div>
+
+    <div class="specs">
+      <div><strong>Год издания:</strong> {{ book?.year }}</div>
+      <div><strong>Издательство:</strong> {{ book?.publisher }}</div>
+      <div><strong>ISBN:</strong> {{ book?.isbn }}</div>
+      <div><strong>Количество страниц:</strong> {{ book?.pages }}</div>
+    </div>
+
+    <button (click)="goBack()">← Назад к списку</button>
+  </div>
+</div>
+}@else {
+<p>Загрузка книги</p>
+}
